@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Undangan Pernikahan</title>
+
+    <!-- Great Vibes Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Libre Baskerville Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container position-relative">
+      <!-- Hiasan Bunga -->
+      <img
+        src="./assets/images/right-flower.png"
+        alt="Bunga Atas Kanan"
+        class="bunga bunga-kanan"
+      />
+      <img
+        src="./assets/images/left-flower.png"
+        alt="Bunga Bawah Kiri"
+        class="bunga bunga-kiri"
+      />
+      <div
+        class="text-center d-flex flex-column justify-content-center align-items-center vh-100 gap-4"
+      >
+        <!-- Judul -->
+        <div class="tilte-wrapper d-flex flex-column gap-3">
+          <div class="fade-up delay-1">The Wedding of</div>
+          <h1 class="fade-up delay-2">Ettyka & Izzat</h1>
+        </div>
+
+        <!-- Area tangan -->
+        <div class="hand-wrapper">
+          <img
+            src="./assets/images/left-hand.png"
+            alt="Tangan Kiri"
+            class="hand hand-left"
+          />
+          <img
+            src="./assets/images/right-hand.png"
+            alt="Tangan Kanan"
+            class="hand hand-right"
+          />
+        </div>
+
+        <!-- Teks tamu + tombol -->
+        <div
+          class="guest-container invisible mt-3 d-flex flex-column justify-content-center align-items-center"
+        >
+          <div class="fade-up delay-text-1 d-flex flex-column gap-2">
+            <div>Kepada Yth.</div>
+            <h4 id="guest-name">Tamu Undangan</h4>
+          </div>
+          <button
+            class="btn btn-custom fade-up delay-text-2 d-flex flex-row justify-content-center align-items-center gap-2"
+          >
+            <img
+              src="./assets/icons/open-invitation-icon.png"
+              alt="open invitaion icon"
+            />
+
+            <span>Open Invitation</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional, untuk fitur interaktif) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
