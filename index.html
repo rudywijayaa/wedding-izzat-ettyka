@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Undangan Pernikahan</title>
 
-    <!-- Great Vibes Font-->
+    <!-- Great Vibes Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,37 +31,37 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="container position-relative">
+    <div class="cover-section container-fluid position-relative">
       <!-- Hiasan Bunga -->
       <img
-        src="./assets/images/right-flower.png"
+        src="https://8upload.com/image/68333deea4c22/decoration-cover-flower-right-top.png"
         alt="Bunga Atas Kanan"
-        class="bunga bunga-kanan"
+        class="cover-decoration cover-decoration-top-right"
       />
       <img
-        src="./assets/images/left-flower.png"
+        src="https://8upload.com/image/68333dee6756e/decoration-cover-flower-left-bottom.png"
         alt="Bunga Bawah Kiri"
-        class="bunga bunga-kiri"
+        class="cover-decoration cover-decoration-bottom-left"
       />
       <div
         class="text-center d-flex flex-column justify-content-center align-items-center vh-100 gap-4"
       >
         <!-- Judul -->
-        <div class="tilte-wrapper d-flex flex-column gap-3">
-          <div class="fade-up delay-1">The Wedding of</div>
-          <h1 class="fade-up delay-2">Ettyka & Izzat</h1>
+        <div class="invitation-title d-flex flex-column gap-3">
+          <div class="invitation-subtitle">The Wedding of</div>
+          <h1 class="invitation-names">Ettyka & Izzat</h1>
         </div>
 
         <!-- Area tangan -->
         <div class="hand-wrapper">
           <img
-            src="./assets/images/left-hand.png"
-            alt="Tangan Kiri"
+            src="https://8upload.com/image/683340b0e05be/decoration-cover-left-hand.png"
+            alt="Left Hand"
             class="hand hand-left"
           />
           <img
-            src="./assets/images/right-hand.png"
-            alt="Tangan Kanan"
+            src="https://8upload.com/image/683340b103270/decoration-cover-right-hand.png"
+            alt="Right Hand"
             class="hand hand-right"
           />
         </div>
@@ -70,23 +70,112 @@
         <div
           class="guest-container invisible mt-3 d-flex flex-column justify-content-center align-items-center"
         >
-          <div class="fade-up delay-text-1 d-flex flex-column gap-2">
-            <div>Kepada Yth.</div>
+          <div class="guest-info d-flex flex-column gap-2">
+            <p class="guest-label">Kepada Yth.</p>
             <h4 id="guest-name">Tamu Undangan</h4>
           </div>
           <button
-            class="btn btn-custom fade-up delay-text-2 d-flex flex-row justify-content-center align-items-center gap-2"
+            class="btn btn-invitation d-flex flex-row justify-content-center align-items-center gap-2"
+            id="openInvitationBtn"
           >
             <img
               src="./assets/icons/open-invitation-icon.png"
-              alt="open invitaion icon"
+              alt="Open Icon"
+              class="btn-icon"
             />
-
-            <span>Open Invitation</span>
+            <span class="btn-text">Open Invitation</span>
           </button>
         </div>
       </div>
     </div>
+
+    <div id="header-section"
+      class="container-fluid position-relative d-none header-section"
+    >
+      <!-- Konten utama di tengah -->
+
+      <picture class="gobyok fade-in delay-1">
+        <!-- Untuk perangkat kecil (HP) -->
+        <source
+          srcset="https://8upload.com/image/683417edc5633/decoration-header-gobyok-hp.png"
+          media="(max-width: 430px)"
+        />
+
+        <!-- Untuk tablet -->
+        <source
+          srcset="https://8upload.com/image/68341246a1c9e/decoration-header-gobyok-tab.png"
+          media="(max-width: 1024px)"
+        />
+
+        <!-- Default untuk laptop & desktop -->
+        <img
+          src="https://8upload.com/image/683340b153ee2/decoration-header-gobyok-laptop.png"
+          alt="Gobyok"
+          class="img-fluid"
+        />
+      </picture>
+
+      <div class="header-text mt-4">
+        <p class="fade-up delay-2">The Wedding of</p>
+        <h2 class="fade-up delay-3">Ettyka & Izzat</h2>
+        <p class="fade-up delay-4">21 . 06 . 2025</p>
+      </div>
+
+      
+      <!-- Bunga bawah -->
+      <div
+        class="header-flowers d-flex  justify-content-center align-items-end"
+      >
+        <img
+          src="https://8upload.com/image/683340b119da1/decoration-header-flower.png"
+          alt="Bunga Kiri"
+          class="flower flower-1 sway delay-5"
+        />
+        <img
+          src="https://8upload.com/image/683340b119da1/decoration-header-flower.png"
+          alt="Bunga Tengah"
+          class="flower flower-2 sway delay-6"
+        />
+        <img
+          src="https://8upload.com/image/683340b119da1/decoration-header-flower.png"
+          alt="Bunga Kanan"
+          class="flower flower-3 sway delay-7"
+        />
+        <img
+          src="https://8upload.com/image/683340b119da1/decoration-header-flower.png"
+          alt="Bunga Kanan"
+          class="flower flower-4 sway delay-8"
+        />
+        <img
+        src="https://8upload.com/image/683340b119da1/decoration-header-flower.png"
+        alt="Bunga Kanan"
+        class="flower flower-5 sway delay-8"
+      />
+      <img
+      src="https://8upload.com/image/683340b119da1/decoration-header-flower.png"
+      alt="Bunga Kanan"
+      class="flower flower-6 sway delay-8"
+    />
+      </div>
+      
+      </div>
+    </div>
+
+    <!-- Disk & Audio (disembunyikan dulu) -->
+     <div class="music-wrapper">
+    <img
+      id="music-disk"
+      class="disk d-none"
+      src="./assets/icons/disk-on-icon.png"
+      alt="Disk Musik"
+    />
+     </div>
+    <audio
+      id="bg-music"
+      src="./assets/audio/lagu-pernikahan-kita.mp3"
+      preload="auto"
+      loop
+    ></audio>
 
     <!-- Bootstrap JS (Optional, untuk fitur interaktif) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

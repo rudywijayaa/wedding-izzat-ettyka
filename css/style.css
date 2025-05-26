@@ -1,45 +1,36 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+html,
 body {
-  font-size: 16px;
-  line-height: 1.5;
-  background-color: #fefefe;
-  font-family: 'Libre Baskerville', serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: 100vh; /* Pastikan tinggi hanya satu layar */
+  overflow: hidden; /* Nonaktifkan scrolling */
 }
 
-.container {
-  position: relative;
-  max-width: 1100px;
-  min-height: 800px;
-  margin: 0 auto;
-  border-left: 1px solid #cad0ae;
-  border-right: 1px solid #cad0ae;
-  background-image: url('../assets/images/background-texture.png');
+.cover-section {
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('https://8upload.com/image/68333deda99f2/background-teksture.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   padding: 0;
-  overflow-y: auto; /* Boleh scroll jika konten lebih tinggi */
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-.bunga {
+.cover-decoration {
   position: absolute;
   z-index: 0;
   pointer-events: none;
   animation: sway 5s ease-in-out infinite;
 }
 
-.bunga-kanan {
+.cover-decoration-top-right {
   top: 0;
   right: 0;
-  width: 135px;
+  width: 200px;
   opacity: 0;
   position: absolute;
   animation: bungaMunculAtas 1.2s ease-out 0.5s forwards,
@@ -47,10 +38,10 @@ body {
   z-index: 1;
 }
 
-.bunga-kiri {
+.cover-decoration-bottom-left {
   bottom: 0;
   left: 0;
-  width: 135px;
+  width: 200px;
   opacity: 0;
   position: absolute;
   animation: bungaMunculBawah 1.2s ease-out 1.2s forwards,
@@ -100,32 +91,39 @@ body {
   }
 }
 
-.tilte-wrapper {
+.invitation-title {
   font-family: 'Great Vibes', cursive;
   z-index: 2;
 }
 
-.fade-up {
+.invitation-subtitle {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 1s forwards;
-}
-
-.delay-1 {
   animation-delay: 0.2s;
   font-size: 42px;
   color: #7e5d30;
 }
-.delay-2 {
+.invitation-names {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
   animation-delay: 0.6s;
   font-size: 90px;
   color: #7e5d30;
 }
-.delay-text-1 {
-  animation-delay: 2.4s;
+.guest-info {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  color: #7e5d30;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
+  animation-delay: 1s;
 }
-.delay-text-2 {
-  animation-delay: 2.8s;
+
+.guest-info p {
+  margin: 0;
 }
 
 @keyframes fadeUp {
@@ -137,10 +135,9 @@ body {
 
 .hand-wrapper {
   position: relative;
-  height: 400px;
   width: 100%;
-  margin-top: 1.5rem;
   padding: 0;
+  display: none;
 }
 
 .hand {
@@ -162,18 +159,11 @@ body {
 
 .hand-right {
   right: 0;
-
   transform: translateX(100%); /* Mulai dari luar kanan */
   animation: handRightIn 1s forwards;
   animation-delay: 1.2s;
   z-index: 1;
   width: 600px;
-}
-
-.guest-container {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 18px;
-  color: #7e5d30;
 }
 
 #guest-name {
@@ -194,7 +184,7 @@ body {
   }
 }
 
-.btn-custom {
+.btn-invitation {
   background-color: #b58a56;
   color: #fff;
   width: fit-content;
@@ -207,14 +197,18 @@ body {
   font-size: 14px;
   font-family: 'Libre Baskerville', serif;
   transition: background-color 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
+  animation-delay: 1.3s;
 }
 
-.btn-custom:hover {
+.btn-invitation:hover {
   background-color: #8f6d44;
   color: #fff;
 }
 
-.btn-custom img {
+.btn-invitation .btn-icon {
   width: 21px;
 }
 
@@ -222,212 +216,769 @@ body {
   visibility: hidden;
 }
 
-/* Jika tinggi layar cukup, baru pakai 100dvh */
-@media (min-height: 900px) {
-  .container {
-    min-height: 100dvh;
+/* === HEADER SECTION === */
+.header-section {
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('https://8upload.com/image/6833486b57f4d/background-gunungan-wayang-laptop.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  overflow: hidden;
+  /* jika ingin scroll nanti di-override oleh JS */
+}
+
+/* -- Gobyok (tengah atas) -- */
+.gobyok {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  max-width: 100%;
+  max-height: 100vh;
+  opacity: 0;
+  /* Animasi: fade-in saja */
+  animation: fadeIn 1s forwards;
+  animation-delay: 0.2s;
+  z-index: 1;
+}
+
+/* -- Judul & Tanggal -- */
+.header-text p,
+.header-text h2 {
+  font-family: 'Great Vibes', cursive;
+  margin: 0;
+  color: #7e5d30;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
+  text-align: center;
+}
+
+.header-text p {
+  font-size: 24px;
+  animation-delay: 0.6s;
+}
+
+.header-text h2 {
+  font-size: 48px;
+  font-weight: normal;
+  animation-delay: 1s;
+}
+
+.header-text .date {
+  font-size: 20px;
+  margin-top: 8px;
+  animation-delay: 1.4s;
+}
+/* Wrapper harus position: relative agar anak absolute posisinya dikunci di situ */
+/* Wrapper di dalam .header-section */
+.header-flowers {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Gaya umum semua bunga */
+.header-flowers img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  width: 300px;
+  animation: fadeIn 0.1s forwards, sway 8s ease-in-out infinite;
+}
+
+.header-flowers .flower-1 {
+  left: 0;
+  animation-delay: 0.1s, 0s;
+  z-index: 4;
+}
+.header-flowers .flower-2 {
+  left: 250px; /* geser 120px dari tepi kanan */
+  animation-delay: 0.1s, 0s;
+  z-index: 3;
+}
+
+.header-flowers .flower-3 {
+  left: 500px;
+  animation-delay: 0.1s, 0s;
+}
+
+.header-flowers .flower-4 {
+  left: 750px;
+  animation-delay: 0.1s, 0s;
+}
+
+.header-flowers .flower-5 {
+  left: 1000px;
+  animation-delay: 0.1s, 0s;
+}
+
+.header-flowers .flower-6 {
+  left: 1250px;
+  animation-delay: 0.1s, 0s;
+}
+
+/* Animasi (jika belum ada) */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }
 
-@media (max-width: 1024px) {
+/* === ANIMATIONS === */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.green-background {
+  position: absolute;
+  bottom: 0;
+  background-color: #858e42;
+  height: 10px;
+  width: 100vw;
+}
+
+.music-wrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.disk {
+  width: 60px;
+  height: auto;
+  animation: spin 6s linear infinite;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+}
+
+/* Note muncul di atas disk */
+.note {
+  position: absolute;
+  bottom: 80px; /* di atas disk */
+  left: 20px;
+  transform: translateX(-50%);
+  width: 24px;
+  opacity: 0;
+  animation: floatNote 3s ease-in forwards;
+  z-index: 99;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatNote {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+}
+
+/* Media query dengan kondisi tambahan tetap dipertahankan */
+@media (max-width: 1024px) and (min-height: 1336px) {
   .container {
     min-height: 100vh;
   }
-  .delay-1 {
+  .invitation-subtitle {
     font-size: 42px;
   }
-  .delay-2 {
+  .invitation-names {
     font-size: 90px;
   }
-  .hand-wrapper {
-    height: 400px;
+  .guest-info {
+    animation-delay: 2.2s;
   }
-
+  .hand-wrapper {
+    height: 450px;
+    display: block;
+  }
   .hand-left,
   .hand-right {
     width: 655px;
   }
-
   .hand-right {
     top: 20px;
   }
   .hand-left {
     top: -120px;
   }
-
-  .guest-container {
+  .guest-info {
     font-size: 30px;
   }
-
   #guest-name {
     font-size: 38px;
   }
-
-  .btn-custom {
+  .btn-invitation {
     font-size: 28px;
     margin-top: 60px;
     padding: 15px 20px;
     border-radius: 20px;
+    animation-delay: 2.6s;
   }
-
-  .btn-custom img {
+  .btn-invitation .btn-icon {
     width: 30px;
   }
-
-  .bunga-kanan,
-  .bunga-kiri {
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
     width: 250px;
+  }
+
+  /*header*/
+  .header-section {
+    background-image: url('https://8upload.com/image/6833486c32520/background-gunungan-wayang-tab.png');
+  }
+
+  .header-flowers img {
+    width: 400px;
+  }
+  .header-flowers .flower-1 {
+    animation-delay: 1s, 0s;
+    z-index: 4;
+  }
+
+  .header-flowers .flower-2 {
+    left: 350px;
+    animation-delay: 1s, 0s;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3 {
+    left: 700px;
+    animation-delay: 1s, 0s;
+  }
+
+  .header-flowers .flower-4,
+  .header-flowers .flower-5,
+  .header-flowers .flower-6 {
+    display: none;
+  }
+
+  .disk {
+    width: 80px;
+    bottom: 20px;
+  }
+
+  .note {
+    width: 32px;
+    bottom: 110px;
+  }
+
+  .header-text {
+    position: absolute;
+    bottom: 210px;
+    left: 0;
+    right: 0;
+  }
+
+  .header-text p {
+    font-size: 32px;
+  }
+
+  .header-text h2 {
+    font-size: 70px;
+  }
+
+  .header-text .date {
+    font-size: 34px;
   }
 }
 
-@media (max-width: 912px) {
+@media (max-width: 912px) and (max-height: 1368px) {
+  .hand-wrapper {
+    display: block;
+  }
   .hand-left,
   .hand-right {
     width: 590px;
   }
+  .hand-right {
+    top: 20px;
+  }
+  .hand-left {
+    top: -120px;
+  }
+  .guest-info {
+    font-size: 30px;
+  }
+  #guest-name {
+    font-size: 38px;
+  }
+  .btn-invitation {
+    font-size: 28px;
+    margin-top: 60px;
+    padding: 15px 20px;
+    border-radius: 20px;
+    animation-delay: 2.6s;
+  }
+  .btn-invitation .btn-icon {
+    width: 30px;
+  }
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
+    width: 250px;
+  }
+
+  /*header*/
+  .header-section {
+    background-image: url('https://8upload.com/image/6833486c32520/background-gunungan-wayang-tab.png');
+  }
+
+  .header-flowers img {
+    width: 450px;
+  }
+  .header-flowers .flower-1 {
+    animation-delay: 1s, 0s;
+    z-index: 4;
+  }
+
+  .header-flowers .flower-2 {
+    left: 375px;
+    animation-delay: 1s, 0s;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3 {
+    left: 750px;
+    animation-delay: 1s, 0s;
+  }
+
+  .header-flowers .flower-4,
+  .header-flowers .flower-5,
+  .header-flowers .flower-6 {
+    display: none;
+  }
+
+  .disk {
+    width: 80px;
+    bottom: 40px;
+    left: 20px;
+  }
+
+  .note {
+    width: 32px;
+    bottom: 80px;
+  }
+
+  .header-text {
+    position: absolute;
+    bottom: 250px;
+    left: 0;
+    right: 0;
+  }
+
+  .header-text p {
+    font-size: 28px;
+  }
+
+  .header-text h2 {
+    font-size: 60px;
+  }
+
+  .header-text .date {
+    font-size: 30px;
+  }
 }
 
+/* Media query hanya dengan max-width dioptimalkan */
 @media (max-width: 820px) {
-  .delay-1 {
+  .invitation-subtitle {
     font-size: 36px;
   }
-  .delay-2 {
+  .invitation-names {
     font-size: 80px;
   }
   .hand-wrapper {
     height: 400px;
   }
-
   .hand-left,
   .hand-right {
     width: 550px;
   }
-
   .hand-right {
     top: 50px;
   }
   .hand-left {
     top: -50px;
   }
-
-  .guest-container {
+  .guest-info {
     font-size: 26px;
   }
-
   #guest-name {
     font-size: 32px;
   }
-
-  .btn-custom {
+  .btn-invitation {
     font-size: 22px;
     padding: 15px 20px;
     border-radius: 18px;
   }
-
-  .btn-custom img {
+  .btn-invitation .btn-icon {
     width: 24px;
   }
-
-  .bunga-kanan,
-  .bunga-kiri {
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
     width: 200px;
+  }
+  .header-text {
+    bottom: 215px;
   }
 }
 
-/* === Tablet (max-width: 768px) === */
 @media (max-width: 768px) {
-  .delay-1 {
+  .invitation-subtitle {
     font-size: 30px;
   }
-  .delay-2 {
-    font-size: 80px;
-  }
   .hand-wrapper {
-    height: 300px;
+    height: 350px;
   }
-
   .hand-left,
   .hand-right {
     width: 510px;
   }
-
   .hand-right {
     top: 20px;
   }
   .hand-left {
     top: -80px;
   }
-
-  .guest-container {
+  .guest-info {
     font-size: 24px;
   }
-
   #guest-name {
     font-size: 30px;
   }
-
-  .btn-custom {
+  .btn-invitation {
     font-size: 24px;
     margin-top: 40px;
     padding: 15px 20px;
     border-radius: 20px;
   }
-
-  .btn-custom img {
-    width: 24px;
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
+    width: 180px;
   }
 
-  .bunga-kanan,
-  .bunga-kiri {
-    width: 180px;
+  .header-text {
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+    right: 0;
+  }
+
+  .header-flowers img {
+    width: 350px;
+  }
+
+  .header-text p {
+    font-size: 24px;
+  }
+
+  .header-text h2 {
+    font-size: 50px;
+  }
+
+  .header-text .date {
+    font-size: 28px;
+  }
+
+  .header-flowers .flower-2 {
+    left: 300px;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3 {
+    left: 600px;
+  }
+
+  .disk {
+    width: 70px;
+    bottom: 0;
+    left: 0;
+  }
+
+  .note {
+    width: 30px;
+    bottom: 90px;
   }
 }
 
-/* === Smartphone (max-width: 430px) === */
-@media (max-width: 430px) {
-  .delay-1 {
+@media (max-width: 767px) and (orientation: portrait) {
+  .hand-wrapper {
+    display: block; /* Tampilkan di portrait */
+  }
+}
+
+@media (max-width: 932px) and (orientation: landscape) {
+  .hand-wrapper {
+    display: none; /* Sembunyikan di landscape */
+  }
+
+  .invitation-subtitle {
     font-size: 28px;
   }
-  .delay-2 {
+  .invitation-names {
     font-size: 52px;
   }
-  .hand-wrapper {
-    height: 170px;
+  .guest-info {
+    font-size: 16px;
   }
-
-  .hand-left,
-  .hand-right {
-    width: 280px;
-  }
-
-  .hand-right {
-    top: 20px;
-  }
-  .hand-left {
-    top: -40px;
-  }
-
-  .guest-container {
-    font-size: 14px;
-  }
-
   #guest-name {
     font-size: 18px;
   }
-
-  .btn-custom {
+  .btn-invitation {
     font-size: 14px;
     margin-top: 20px;
     padding: 10px 15px;
     border-radius: 14px;
   }
-
-  .btn-custom img {
+  .btn-invitation .btn-icon {
     width: 18px;
   }
-  .bunga-kanan,
-  .bunga-kiri {
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
     width: 140px;
+  }
+
+  #header-section {
+    height: 1500px;
+  }
+
+  .header-text {
+    position: absolute;
+    bottom: 250px;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 896px) and (orientation: landscape) {
+  .hand-wrapper {
+    display: none; /* Sembunyikan di landscape */
+  }
+
+  .invitation-subtitle {
+    font-size: 28px;
+  }
+  .invitation-names {
+    font-size: 52px;
+  }
+  .guest-info {
+    font-size: 16px;
+  }
+  #guest-name {
+    font-size: 18px;
+  }
+  .btn-invitation {
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-radius: 14px;
+  }
+  .btn-invitation .btn-icon {
+    width: 18px;
+  }
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
+    width: 140px;
+  }
+
+  #header-section {
+    height: 1500px;
+  }
+}
+
+@media (max-width: 740px) and (orientation: landscape) {
+  #header-section {
+    height: 1200px;
+  }
+
+  .header-text {
+    bottom: 220px;
+  }
+}
+
+@media (max-width: 543px) {
+  .invitation-subtitle {
+    font-size: 28px;
+  }
+  .invitation-names {
+    font-size: 52px;
+  }
+  .hand-wrapper {
+    height: 250px;
+  }
+  .hand-left,
+  .hand-right {
+    width: 350px;
+  }
+  .hand-left {
+    top: -60px;
+  }
+  .guest-info {
+    font-size: 16px;
+  }
+  #guest-name {
+    font-size: 18px;
+  }
+  .btn-invitation {
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-radius: 14px;
+  }
+  .btn-invitation .btn-icon {
+    width: 18px;
+  }
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
+    width: 140px;
+  }
+
+  .header-text {
+    position: absolute;
+    bottom: 130px;
+    left: 0;
+    right: 0;
+  }
+
+  .header-flowers img {
+    width: 250px;
+  }
+
+  .header-text p {
+    font-size: 16px;
+  }
+
+  .header-text h2 {
+    font-size: 30px;
+  }
+
+  .header-text .date {
+    font-size: 24px;
+  }
+
+  .header-flowers .flower-2 {
+    left: 200px;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3 {
+    left: 400px;
+  }
+
+  .music-wrapper {
+    bottom: 0;
+  }
+  .disk {
+    width: 50px;
+    bottom: 0;
+    left: 0px;
+  }
+
+  .note {
+    width: 22px;
+    bottom: 40px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hand-wrapper {
+    height: 200px;
+  }
+  .hand-left {
+    top: -40px;
+  }
+  .hand-left,
+  .hand-right {
+    width: 280px;
+  }
+
+  .header-section {
+    background-image: url('https://8upload.com/image/6834161e1ae63/background-gunungan-wayang-hp.png');
+  }
+
+  .header-flowers img {
+    width: 300px;
+  }
+  .header-flowers .flower-1 {
+    animation-delay: 0.1s, 0s;
+    z-index: 4;
+  }
+
+  .header-flowers .flower-2 {
+    left: 200px;
+    animation-delay: 0.1s, 0s;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3,
+  .header-flowers .flower-4,
+  .header-flowers .flower-5,
+  .header-flowers .flower-6 {
+    display: none;
+  }
+
+  .disk {
+    width: 60px;
+    bottom: 0;
+    left: 0;
+  }
+
+  .note {
+    width: 28px;
+    left: 10px;
+    bottom: 40px;
+  }
+
+  .header-text {
+    bottom: 160px;
+  }
+
+  .header-text p {
+    font-size: 16px;
+  }
+
+  .header-text h2 {
+    font-size: 30px;
+  }
+
+  .header-text .date {
+    font-size: 28px;
   }
 }
 
@@ -436,104 +987,176 @@ body {
   .hand-right {
     width: 270px;
   }
+
+  .header-text {
+    bottom: 150px;
+  }
 }
 
-/* Extra small devices */
-@media (max-width: 390px) {
+@media (max-width: 395px) {
   .hand-wrapper {
     height: 170px;
   }
-
   .hand-left,
   .hand-right {
     width: 250px;
   }
-
-  .hand-right {
-    top: 20px;
-  }
-  .hand-left {
-    top: -40px;
-  }
-
-  .guest-container {
-    font-size: 14px;
-  }
-
-  #guest-name {
-    font-size: 18px;
-  }
-
-  .btn-custom {
-    font-size: 14px;
+  .btn-invitation {
     padding: 10px 12px;
   }
-
-  .btn-custom img {
-    width: 18px;
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
+    width: 120px;
   }
 
-  .bunga-kanan,
-  .bunga-kiri {
-    width: 120px;
+  .header-text {
+    bottom: 140px;
   }
 }
 
 @media (max-width: 376px) {
-  .delay-1 {
+  .invitation-subtitle {
     font-size: 22px;
   }
-  .delay-2 {
+  .invitation-names {
     font-size: 42px;
   }
-  .hand-wrapper {
-    height: 170px;
-  }
-
   .hand-left,
   .hand-right {
     width: 245px;
   }
-
-  .hand-right {
-    top: 20px;
-  }
   .hand-left {
     top: -30px;
   }
-
-  .guest-container {
-    font-size: 14px;
-  }
-
-  #guest-name {
-    font-size: 18px;
-  }
-
-  .btn-custom {
+  .btn-invitation {
     font-size: 12px;
-    padding: 10px 12px;
+  }
+  .cover-decoration-top-right,
+  .cover-decoration-bottom-left {
+    width: 100px;
   }
 
-  .btn-custom img {
-    width: 18px;
+  .header-section {
+    background-image: url('https://8upload.com/image/68340b3ec5697/background-gunungan-wayang-hp-small.png');
   }
-  .bunga-kanan,
-  .bunga-kiri {
-    width: 100px;
+
+  .header-flowers img {
+    width: 210px;
+  }
+  .header-flowers .flower-1 {
+    animation-delay: 0.1s, 0s;
+    z-index: 4;
+  }
+
+  .header-flowers .flower-2 {
+    left: 180px;
+    animation-delay: 0.1s, 0s;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3,
+  .header-flowers .flower-4,
+  .header-flowers .flower-5,
+  .header-flowers .flower-6 {
+    display: none;
+  }
+
+  .disk {
+    width: 50px;
+    bottom: 0;
+    left: 0;
+  }
+
+  .note {
+    width: 20px;
+    left: 0;
+    bottom: 40px;
+  }
+
+  .header-text {
+    bottom: 120px;
+  }
+
+  .header-text p {
+    font-size: 16px;
+  }
+
+  .header-text h2 {
+    font-size: 30px;
+  }
+
+  .header-text .date {
+    font-size: 28px;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 360px) and (max-height: 740px) {
   .hand-left,
   .hand-right {
     width: 235px;
   }
+
+  .header-flowers img {
+    width: 310px;
+  }
+  .header-flowers .flower-1 {
+    animation-delay: 0.1s, 0s;
+    z-index: 4;
+  }
+
+  .header-flowers .flower-2 {
+    left: 105px;
+    animation-delay: 0.1s, 0s;
+    z-index: 3;
+  }
+
+  .header-flowers .flower-3,
+  .header-flowers .flower-4,
+  .header-flowers .flower-5,
+  .header-flowers .flower-6 {
+    display: none;
+  }
+
+  .header-text {
+    bottom: 160px;
+  }
 }
 
-@media (max-width: 344px) {
+@media (max-width: 344px) and (min-height: 882px) {
   .hand-left,
   .hand-right {
     width: 220px;
+  }
+
+  .header-flowers img {
+    width: 350px;
+  }
+  .header-flowers .flower-1 {
+    animation-delay: 0.1s, 0s;
+    z-index: 4;
+  }
+
+  .header-flowers .flower-2,
+  .header-flowers .flower-3,
+  .header-flowers .flower-4,
+  .header-flowers .flower-5,
+  .header-flowers .flower-6 {
+    display: none;
+  }
+
+  .header-text {
+    bottom: 170px;
+  }
+
+  .header-text p {
+    font-size: 20px;
+  }
+
+  .header-text h2 {
+    font-size: 35px;
+  }
+
+  .header-text .date {
+    font-size: 30px;
   }
 }
